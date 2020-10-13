@@ -1,6 +1,8 @@
 package scrapper
 
 import (
+	"sync"
+
 	"github.com/fedeya/lol-save-builds/champeon"
 	"github.com/gocolly/colly/v2"
 )
@@ -10,6 +12,7 @@ type Scrapper struct {
 	url   string
 	c     *colly.Collector
 	Champ champeon.Champeon
+	wg    sync.WaitGroup
 }
 
 // New Create a new Instance for Scrapper
@@ -21,6 +24,7 @@ func New(url string) *Scrapper {
 		url:   url,
 		c:     c,
 		Champ: champ,
+		wg:    sync.WaitGroup{},
 	}
 }
 
@@ -31,8 +35,10 @@ func (s *Scrapper) Visit() {
 
 // Listeners is all Cully Listeners
 func (s *Scrapper) Listeners() {
-	s.c.OnHTML("h1.champion-stats-header-info__name", s.GetChampName)
-	s.c.OnHTML("span.champion-stats-header__position__role", s.GetChampLine)
-	s.c.OnHTML("ul.champion-stats__list", s.GetChampSkills)
-	s.c.OnHTML("table.champion-skill-build__table > tbody", s.GetChampSkillsOrder)
+	go s.c.OnHTML("h1.champion-stats-header-info__name", s.GetChampName)
+	go s.c.OnHTML("span.champion-stats-header__position__role", s.GetChampLine)
+	go s.c.OnHTML("ul.champion-stats__list", s.GetChampSkills)
+	go s.c.OnHTML("table.champion-skill-build__table > tbody", s.GetChampSkillsOrder)
+
+	s.wg.Wait()
 }
