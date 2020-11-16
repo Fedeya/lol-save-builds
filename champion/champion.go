@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+
+	"github.com/google/uuid"
 )
 
 // Field is the type for the champion fields struct
@@ -14,7 +16,7 @@ type Field struct {
 
 // Champion is a type for League of Legends Champeons Data
 type Champion struct {
-	ID          int        `json:"id"`
+	ID          uuid.UUID  `json:"id"`
 	Name        string     `json:"name"`
 	Line        string     `json:"line"`
 	Skills      [3]Field   `json:"skills"`
@@ -75,14 +77,17 @@ func (c Champion) SaveJSONChamp() {
 	file := readFile()
 
 	var champion []Champion
+	id, _ := uuid.NewRandom()
+	c.ID = id
 
 	json.Unmarshal(file, &champion)
 	champion = append(champion, c)
-	text, _ := json.MarshalIndent(champion, "", " ")
+	text, _ := json.Marshal(champion)
 
 	ioutil.WriteFile("builds.json", text, 0644)
 }
 
+// GetBuildsWithJSON transform champion builds.json and return champion array
 func GetBuildsWithJSON() []Champion {
 	file := readFile()
 	var champions []Champion

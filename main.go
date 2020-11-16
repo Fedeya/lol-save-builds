@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 
+	"github.com/fedeya/lol-save-builds/champion"
 	"github.com/fedeya/lol-save-builds/scrapper"
 )
 
@@ -16,5 +17,7 @@ func main() {
 
 	s := scrapper.New(url)
 	s.Scrap()
+	c := champion.GetBuildsWithJSON()
+	fmt.Println(c)
 
 }
