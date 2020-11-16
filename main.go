@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	url := "https://las.op.gg/champion/sett/statistics/top"
+	url := "https://las.op.gg/champion/fiora/statistics/top"
 
 	if url == "" {
 		fmt.Print("Enter a url: ")

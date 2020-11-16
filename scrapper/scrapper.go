@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/fedeya/lol-save-builds/champeon"
+	"github.com/fedeya/lol-save-builds/champion"
 	"github.com/gocolly/colly/v2"
 )
 
@@ -12,7 +12,7 @@ import (
 type Scrapper struct {
 	url   string
 	c     *colly.Collector
-	Champ champeon.Champeon
+	Champ champion.Champion
 	wg    sync.WaitGroup
 	e     error
 }
@@ -20,7 +20,7 @@ type Scrapper struct {
 // New Create a new Instance for Scrapper
 func New(url string) *Scrapper {
 	c := colly.NewCollector()
-	champ := champeon.Champeon{}
+	champ := champion.Champion{}
 
 	return &Scrapper{
 		url:   url,
@@ -64,4 +64,5 @@ func (s *Scrapper) Scrap() {
 		return
 	}
 	s.Champ.PrintData()
+	s.Champ.SaveJSONChamp()
 }

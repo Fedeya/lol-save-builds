@@ -4,7 +4,7 @@ import (
 	"strings"
 
 	"github.com/PuerkitoBio/goquery"
-	"github.com/fedeya/lol-save-builds/champeon"
+	"github.com/fedeya/lol-save-builds/champion"
 	"github.com/gocolly/colly/v2"
 )
 
@@ -18,7 +18,7 @@ func (s *Scrapper) GetChampItems(e *colly.HTMLElement) {
 	e.ForEach("li.champion-stats__list__item", func(i int, e *colly.HTMLElement) {
 		if itemsCount >= 7 {
 			if i == 0 {
-				var arr []champeon.Item
+				var arr []champion.Field
 				listItemsCount++
 				s.Champ.Items = append(s.Champ.Items, arr)
 			}
@@ -28,7 +28,7 @@ func (s *Scrapper) GetChampItems(e *colly.HTMLElement) {
 			r := strings.NewReader(t)
 			doc, _ := goquery.NewDocumentFromReader(r)
 			item := doc.Find("b").Text()
-			s.Champ.Items[listItemsCount] = append(s.Champ.Items[listItemsCount], champeon.Item{
+			s.Champ.Items[listItemsCount] = append(s.Champ.Items[listItemsCount], champion.Field{
 				Name:     item,
 				ImageURL: src,
 			})
