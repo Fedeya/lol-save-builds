@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	url := "https://las.op.gg/champion/fiora/statistics/top"
+	url := "https://las.op.gg/champion/sett/statistics/top"
 
 	if url == "" {
 		fmt.Print("Enter a url: ")
@@ -15,8 +15,6 @@ func main() {
 	}
 
 	s := scrapper.New(url)
-	s.Listeners()
-	s.Visit()
-	s.Champ.PrintData()
+	s.Scrap()
 
 }
