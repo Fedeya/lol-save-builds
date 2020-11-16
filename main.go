@@ -1,23 +1,35 @@
 package main
 
 import (
-	"fmt"
-
 	"github.com/fedeya/lol-save-builds/champion"
 	"github.com/fedeya/lol-save-builds/scrapper"
+	"github.com/leaanthony/mewn"
+	"github.com/wailsapp/wails"
 )
 
-func main() {
-	url := "https://las.op.gg/champion/fiora/statistics/top"
-
-	if url == "" {
-		fmt.Print("Enter a url: ")
-		fmt.Scanln(&url)
-	}
-
+func scrap(url string) {
 	s := scrapper.New(url)
 	s.Scrap()
-	c := champion.GetBuildsWithJSON()
-	fmt.Println(c)
+}
 
+func getBuilds() []champion.Champion {
+	return champion.GetBuildsWithJSON()
+}
+
+func main() {
+	js := mewn.String("./client/build/static/js/main.js")
+	css := mewn.String("./client/build/static/css/main.css")
+
+	app := wails.CreateApp(&wails.AppConfig{
+		Width:  800,
+		Height: 600,
+		Title:  "LoL Save Builds",
+		JS:     js,
+		CSS:    css,
+	})
+
+	app.Bind(scrap)
+	app.Bind(getBuilds)
+
+	app.Run()
 }

@@ -1,0 +1,25 @@
+{
+  "name": "lol-save-builds",
+  "description": "Enter your project description",
+  "author": {
+    "name": "Fede",
+    "email": "elfedeminaya@gmail.com"
+  },
+  "version": "0.1.0",
+  "binaryname": "lol-save-builds",
+  "frontend": {
+    "dir": "client",
+    "install": "npm install",
+    "build": "npm run build",
+    "bridge": "src",
+    "serve": "npm run start"
+  },
+  "tags": "",
+  "WailsVersion": "",
+  "CrossCompile": false,
+  "Platform": "",
+  "Architecture": "",
+  "LdFlags": "",
+  "GoPath": "",
+  "UseFirebug": false
+}
