@@ -2,3 +2,4 @@ tmp
 lol-save-builds
 builds.json
 build
+client/src/tailwind.css
