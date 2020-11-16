@@ -1,19 +1,12 @@
 import React from 'react';
 
 const App: React.FC = () => {
-  const get = async () => {
-    const builds = await window.backend.getBuilds();
-    console.log(builds);
-  };
-
   return (
-    <div id="app" className="App">
-      <header className="App-header">
-        <p>
-          Welcome to your new <code>wails/react</code> project.
-        </p>
-        <button onClick={get}>click me</button>
-      </header>
+    <div className="w-screen h-screen bg-purple-500">
+      <img
+        src="https://opgg-static.akamaized.net/images/lol/champion/Sett.png?image=c_scale,q_auto,w_140&v=1605067419"
+        alt="Sett Image"
+      />
     </div>
   );
 };

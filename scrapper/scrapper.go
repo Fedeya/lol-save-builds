@@ -38,7 +38,8 @@ func (s *Scrapper) Visit() {
 // Listeners is all Cully Listeners
 func (s *Scrapper) Listeners() {
 	go s.c.OnHTML("h1.champion-stats-header-info__name", s.GetChampName)
-	go s.c.OnHTML("span.champion-stats-header__position__role", s.GetChampLine)
+	go s.c.OnHTML("div.champion-stats-header-info__image", s.GetChampImg)
+	go s.c.OnHTML("li.champion-stats-header__position--active", s.GetChampLine)
 	go s.c.OnHTML("ul.champion-stats__list", s.GetChampSkills)
 	go s.c.OnHTML("ul.champion-stats__list", s.GetChampSummoners)
 	go s.c.OnHTML("ul.champion-stats__list", s.GetChampItems)

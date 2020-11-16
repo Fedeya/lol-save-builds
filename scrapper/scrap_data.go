@@ -15,5 +15,12 @@ func (s *Scrapper) GetChampName(e *colly.HTMLElement) {
 func (s *Scrapper) GetChampLine(e *colly.HTMLElement) {
 	s.wg.Add(1)
 	defer s.wg.Done()
-	s.Champ.Line = e.Text
+	s.Champ.Line = e.Attr("data-position")
+}
+
+// GetChampImg get the champion build line
+func (s *Scrapper) GetChampImg(e *colly.HTMLElement) {
+	s.wg.Add(1)
+	defer s.wg.Done()
+	s.Champ.ImageURL = e.ChildAttr("img", "src")
 }

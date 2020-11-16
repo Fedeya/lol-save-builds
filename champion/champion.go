@@ -18,6 +18,7 @@ type Field struct {
 type Champion struct {
 	ID          uuid.UUID  `json:"id"`
 	Name        string     `json:"name"`
+	ImageURL    string     `json:"image_url"`
 	Line        string     `json:"line"`
 	Skills      [3]Field   `json:"skills"`
 	SkillsOrder [15]string `json:"skill_order"`
@@ -44,6 +45,7 @@ type Champion struct {
 func (c Champion) PrintData() {
 	fmt.Printf("Name: %s \n", c.Name)
 	fmt.Printf("Line: %s \n", c.Line)
+	fmt.Printf("ImageURL: %s \n", c.ImageURL)
 	fmt.Printf("Skills: %s \n", c.Skills)
 	fmt.Printf("Skills Order: %s \n", c.SkillsOrder)
 	fmt.Printf("Summoners: %s \n", c.Summoners)
