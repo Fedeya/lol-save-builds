@@ -30,11 +30,11 @@ func (s *Scrapper) GetChampRunesType(e *colly.HTMLElement) {
 
 		if first {
 			s.Champ.Runes[e.Index].Primary.Type.Name = doc.Find("b").Text()
-			s.Champ.Runes[e.Index].Primary.Type.ImageURL = src
+      s.Champ.Runes[e.Index].Primary.Type.ImageURL = "https:" + src
 			first = false
 		} else {
 			s.Champ.Runes[e.Index].Secondary.Type.Name = doc.Find("b").Text()
-			s.Champ.Runes[e.Index].Secondary.Type.ImageURL = src
+      s.Champ.Runes[e.Index].Secondary.Type.ImageURL = "https:" + src
 		}
 	})
 }
@@ -51,7 +51,7 @@ func (s *Scrapper) GetChampRunesMain(e *colly.HTMLElement) {
 	src, _ := img.Attr("src")
 
 	s.Champ.Runes[e.Index].Primary.Main.Name = alt
-	s.Champ.Runes[e.Index].Primary.Main.ImageURL = src
+  s.Champ.Runes[e.Index].Primary.Main.ImageURL = "https:" + src
 
 }
 
@@ -73,13 +73,13 @@ func (s *Scrapper) GetChampMoreRunes(e *colly.HTMLElement) {
 
 	if moreRunesCount > 2 {
 		s.Champ.Runes[runePageCount].Secondary.More[moreRunesCount-3].Name = alt
-		s.Champ.Runes[runePageCount].Secondary.More[moreRunesCount-3].ImageURL = src
+    s.Champ.Runes[runePageCount].Secondary.More[moreRunesCount-3].ImageURL = "https:" + src
 		moreRunesCount++
 		return
 	}
 
 	s.Champ.Runes[runePageCount].Primary.More[moreRunesCount].Name = alt
-	s.Champ.Runes[runePageCount].Primary.More[moreRunesCount].ImageURL = src
+  s.Champ.Runes[runePageCount].Primary.More[moreRunesCount].ImageURL = "https:" + src
 	moreRunesCount++
 }
 
@@ -95,7 +95,7 @@ func (s *Scrapper) GetChampBoostRunes(e *colly.HTMLElement) {
 
 	e.ForEach("img.active", func(i int, h *colly.HTMLElement) {
 		s.Champ.Runes[runePageBoostCount].Boosts[boostCount].Name = h.Attr("alt")
-		s.Champ.Runes[runePageBoostCount].Boosts[boostCount].ImageURL = h.Attr("src")
+    s.Champ.Runes[runePageBoostCount].Boosts[boostCount].ImageURL = "https:" + h.Attr("src")
 		t := h.Attr("title")
 		r := strings.NewReader(t)
 		doc, _ := goquery.NewDocumentFromReader(r)

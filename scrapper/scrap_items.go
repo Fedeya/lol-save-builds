@@ -30,7 +30,7 @@ func (s *Scrapper) GetChampItems(e *colly.HTMLElement) {
 			item := doc.Find("b").Text()
 			s.Champ.Items[listItemsCount] = append(s.Champ.Items[listItemsCount], champion.Field{
 				Name:     item,
-				ImageURL: src,
+				ImageURL: "https:" + src,
 			})
 		} else {
 			itemsCount++

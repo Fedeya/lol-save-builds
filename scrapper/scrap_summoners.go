@@ -21,15 +21,15 @@ func (s *Scrapper) GetChampSummoners(e *colly.HTMLElement) {
 		if s.Champ.Summoners[1].Name != "" {
 			if i == 0 {
 				s.Champ.Summoners[2].Name = skill
-				s.Champ.Summoners[2].ImageURL = src
+        s.Champ.Summoners[2].ImageURL = "https:" + src
 			} else if i == 1 {
 				s.Champ.Summoners[3].Name = skill
-				s.Champ.Summoners[3].ImageURL = src
+        s.Champ.Summoners[3].ImageURL = "https:" + src
 				return false
 			}
 		}
 		s.Champ.Summoners[i].Name = skill
-		s.Champ.Summoners[i].ImageURL = src
+    s.Champ.Summoners[i].ImageURL = "https:" + src
 		return true
 	})
 }

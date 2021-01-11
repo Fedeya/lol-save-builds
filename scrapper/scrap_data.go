@@ -22,5 +22,5 @@ func (s *Scrapper) GetChampLine(e *colly.HTMLElement) {
 func (s *Scrapper) GetChampImg(e *colly.HTMLElement) {
 	s.wg.Add(1)
 	defer s.wg.Done()
-	s.Champ.ImageURL = e.ChildAttr("img", "src")
+  s.Champ.ImageURL = "https:" + e.ChildAttr("img", "src")
 }

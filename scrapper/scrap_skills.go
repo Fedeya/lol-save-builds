@@ -12,7 +12,7 @@ func (s *Scrapper) GetChampSkills(e *colly.HTMLElement) {
 	defer s.wg.Done()
 	e.ForEach("li > span", func(i int, e *colly.HTMLElement) {
 		s.Champ.Skills[i].Name = e.Text
-		s.Champ.Skills[i].ImageURL = "opgg-static.akamaized.net/images/lol/spell/" + s.Champ.Name + e.Text + ".png"
+    s.Champ.Skills[i].ImageURL = "https://opgg-static.akamaized.net/images/lol/spell/" + s.Champ.Name + e.Text + ".png"
 	})
 }
 

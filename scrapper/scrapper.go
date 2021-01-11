@@ -55,6 +55,13 @@ func (s *Scrapper) Listeners() {
 	})
 
 	s.wg.Wait()
+	listItemsCount = -1
+	itemsCount = 0
+	runePageCount = -1
+	moreRunesCount = 0
+	skipRune = 0
+	boostCount = 0
+	runePageBoostCount = 0
 }
 
 // Scrap use the regular methods for scraping
